@@ -2,7 +2,7 @@ import { useState } from 'react';
 import categories from '../data/categories';
 
 export default function TransactionForm({ onSubmit }) {
-  const [form, setForm] = useState({ amount: '', type: 'ingreso', category: categories[0], date: '' });
+  const [form, setForm] = useState({ description: '', amount: '', type: 'ingreso', category: categories[0], date: '' });
 
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -12,15 +12,22 @@ export default function TransactionForm({ onSubmit }) {
     e.preventDefault();
     await fetch('http://localhost:3000/api/transactions', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      },
       body: JSON.stringify(form),
     });
-    setForm({ amount: '', type: 'ingreso', category: categories[0], date: '' });
+    setForm({ description: '', amount: '', type: 'ingreso', category: categories[0], date: '' });
     if (onSubmit) onSubmit();
   };
 
   return (
     <form className="transaction-form" onSubmit={handleSubmit}>
+      <label>
+        Descripción
+        <input name="description" type="text" value={form.description} onChange={handleChange} placeholder="Descripción" />
+      </label>
       <label>
         Tipo de operación
         <select name="type" value={form.type} onChange={handleChange}>

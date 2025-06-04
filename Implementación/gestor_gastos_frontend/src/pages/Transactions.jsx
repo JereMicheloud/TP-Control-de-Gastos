@@ -1,11 +1,11 @@
-import TransactionList from '../components/TransactionList';
-import TransactionForm from '../components/TransactionForm';
+import TransactionsTable from '../components/TransactionsTable';
+import TransactionsFilters from '../components/TransactionsFilters';
 
 export default function Transactions() {
   return (
-    <main className="transactions">
-      <TransactionForm />
-      <TransactionList />
-    </main>
+    <div className="flex flex-col gap-6">
+      <TransactionsFilters />
+      <TransactionsTable />
+    </div>
   );
 }

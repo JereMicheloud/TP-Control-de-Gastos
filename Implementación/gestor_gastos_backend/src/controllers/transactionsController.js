@@ -3,7 +3,10 @@ const Transaction = require('../models/transaction');
 class TransactionsController {
   async createTransaction(req, res) {
     try {
-      const transaction = await Transaction.create(req.body);
+      const transaction = await Transaction.create({
+        ...req.body,
+        userId: req.user.userId
+      });
       res.status(201).json(transaction);
     } catch (error) {
       res.status(500).json({ message: 'Error creating transaction', error });
@@ -12,10 +15,11 @@ class TransactionsController {
 
   async getAllTransactions(req, res) {
     try {
-      const transactions = await Transaction.findAll();
+      const transactions = await Transaction.findAll({ where: { userId: req.user.userId } });
       res.status(200).json(transactions);
     } catch (error) {
-      res.status(500).json({ message: 'Error fetching transactions', error });
+      console.error('Error fetching transactions:', error);
+      res.status(500).json({ message: 'Error fetching transactions', error: error.message });
     }
   }
 

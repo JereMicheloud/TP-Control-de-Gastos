@@ -3,6 +3,10 @@ const { DataTypes } = require('sequelize');
 const { sequelize } = require('../db/index');
 
 const Transaction = sequelize.define('Transaction', {
+  description: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   amount: {
     type: DataTypes.FLOAT,
     allowNull: false,
@@ -17,6 +21,10 @@ const Transaction = sequelize.define('Transaction', {
   },
   date: {
     type: DataTypes.DATEONLY,
+    allowNull: false,
+  },
+  userId: {
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
 }, {
