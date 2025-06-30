@@ -10,6 +10,16 @@ export default function Transactions() {
   const handleTransactionAdded = () => {
     setShowModal(false);
     setRefreshTrigger(prev => prev + 1);
+    
+    // Opcional: Mostrar mensaje de éxito
+    const successMessage = document.createElement('div');
+    successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+    successMessage.textContent = '¡Transacción agregada exitosamente!';
+    document.body.appendChild(successMessage);
+    
+    setTimeout(() => {
+      document.body.removeChild(successMessage);
+    }, 3000);
   };
 
   return (
@@ -18,9 +28,10 @@ export default function Transactions() {
         <h1 className="text-3xl font-bold text-gray-900">Transacciones</h1>
         <button
           onClick={() => setShowModal(true)}
-          className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-lg"
+          className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-lg flex items-center gap-2"
         >
-          + Nueva Transacción
+          <span className="text-xl">+</span>
+          Nueva Transacción
         </button>
       </div>
 
