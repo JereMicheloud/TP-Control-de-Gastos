@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import config from '../config';
 
 export default function TransactionsTable({ onRefresh, refreshTrigger }) {
   const [transactions, setTransactions] = useState([]);
@@ -7,7 +8,7 @@ export default function TransactionsTable({ onRefresh, refreshTrigger }) {
 
   const fetchTransactions = async () => {
     try {
-      const res = await fetch('http://localhost:3000/api/transactions', {
+      const res = await fetch(`${config.API_URL}/api/transactions`, {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('token')
         }
@@ -29,7 +30,7 @@ export default function TransactionsTable({ onRefresh, refreshTrigger }) {
   const handleDelete = async (id) => {
     if (!confirm('¿Estás seguro de eliminar esta transacción?')) return;
     try {
-      await fetch(`http://localhost:3000/api/transactions/${id}`, {
+      await fetch(`${config.API_URL}/api/transactions/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('token')
