@@ -75,6 +75,19 @@ npm install recharts
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 
+### 6. Configuara Variables de entorno (en un archivo .env)
+```
+PG_HOST=aws-0-sa-east-1.pooler.supabase.com
+PG_PORT=5432
+PG_USER=postgres.hgipbefbrxfzlezmewtg
+PG_PASSWORD=Jere060904_12
+PG_DATABASE=postgres
+PORT=3000
+JWT_SECRET=algosecreto
+
+DB_URL=postgresql://postgres.hgipbefbrxfzlezmewtg:Jere060904_12@aws-0-sa-east-1.pooler.supabase.com:5432/postgres
+```
+
  ## 🚀 Ejecución del Proyecto
  ### Ejecutar todo junto (Recomendado)
  # Desde la carpeta raíz (Implementación)
@@ -101,3 +114,6 @@ Implementación/
     │   └── data/              # Datos estáticos
     └── package.json
 ```
+
+
+Aclaración: El despliegue de la página en algún host de internet no está dispnible aún, por el momento se debe utilizar en un host local; funcionan los endpoints definidos en la documentación, por lo que se pueden realizar correctamente el testing.
