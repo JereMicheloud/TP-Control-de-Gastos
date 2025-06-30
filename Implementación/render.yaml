@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: gestor-gastos-backend
+    env: node
+    buildCommand: cd gestor_gastos_backend && npm install
+    startCommand: cd gestor_gastos_backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PG_HOST
+        value: aws-0-sa-east-1.pooler.supabase.com
+      - key: PG_PORT
+        value: 5432
+      - key: PG_USER
+        value: postgres.qazglqqykuplurfehcbz
+      - key: PG_PASSWORD
+        value: Jere060904_12
+      - key: PG_DATABASE
+        value: postgres
+      - key: JWT_SECRET
+        value: algosecreto
+      - key: PORT
+        value: 10000
+
+  - type: static
+    name: gestor-gastos-frontend
+    buildCommand: cd gestor_gastos_frontend && npm install && npm run build
+    staticPublishPath: gestor_gastos_frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://gestor-gastos-backend.onrender.com

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import config from '../config';
 import categories from '../data/categories';
 
 export default function TransactionForm({ onSubmit }) {
@@ -47,7 +48,7 @@ export default function TransactionForm({ onSubmit }) {
       console.log('Transaction data:', transactionData);
       console.log('Token:', localStorage.getItem('token') ? 'Present' : 'Missing');
 
-      const res = await fetch('http://localhost:3000/api/transactions', {
+      const res = await fetch(`${config.API_URL}/api/transactions`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
