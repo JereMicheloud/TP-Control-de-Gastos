@@ -2,8 +2,11 @@ services:
   - type: web
     name: gestor-gastos-backend
     env: node
-    buildCommand: cd gestor_gastos_backend && npm install
-    startCommand: cd gestor_gastos_backend && npm start
+    region: oregon
+    plan: free
+    buildCommand: npm install --prefix gestor_gastos_backend
+    startCommand: npm start --prefix gestor_gastos_backend
+    rootDir: ./
     envVars:
       - key: NODE_ENV
         value: production
@@ -12,7 +15,7 @@ services:
       - key: PG_PORT
         value: 5432
       - key: PG_USER
-        value: postgres.qazglqqykuplurfehcbz
+        value: postgres.hgipbefbrxfzlezmewtg
       - key: PG_PASSWORD
         value: Jere060904_12
       - key: PG_DATABASE
@@ -20,12 +23,15 @@ services:
       - key: JWT_SECRET
         value: algosecreto
       - key: PORT
-        value: 10000
+        value: 3000
 
   - type: static
     name: gestor-gastos-frontend
-    buildCommand: cd gestor_gastos_frontend && npm install && npm run build
+    buildCommand: npm install --prefix gestor_gastos_frontend && npm run build --prefix gestor_gastos_frontend
     staticPublishPath: gestor_gastos_frontend/dist
+    region: oregon
+    plan: free
+    rootDir: ./
     envVars:
       - key: VITE_API_URL
         value: https://gestor-gastos-backend.onrender.com
