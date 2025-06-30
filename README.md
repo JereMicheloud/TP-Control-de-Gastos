@@ -77,7 +77,6 @@ npx tailwindcss init -p
 
 ### 6. Configuara Variables de entorno (en un archivo .env)
 ```
-VITE_API_URL=https://gestor-gastos-backend.onrender.com
 PG_HOST=aws-0-sa-east-1.pooler.supabase.com
 PG_PORT=5432
 PG_USER=postgres.hgipbefbrxfzlezmewtg
