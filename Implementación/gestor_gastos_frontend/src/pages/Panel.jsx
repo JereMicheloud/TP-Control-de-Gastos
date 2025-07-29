@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import config from '../config';
+import { API_URL } from '../config';
 import BarChartPanel from '../components/BarChartPanel';
 import PieChartPanel from '../components/PieChartPanel';
 import RecentTransactionsTable from '../components/RecentTransactionsTable';
@@ -11,7 +11,7 @@ export default function Panel() {
 
   const fetchTransactions = async () => {
     try {
-      const res = await fetch(`${config.API_URL}/api/transactions`, {
+      const res = await fetch(`${API_URL}/api/transactions`, {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('token')
         }
