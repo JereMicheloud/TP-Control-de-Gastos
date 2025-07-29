@@ -41,12 +41,8 @@ db.connect()
     console.log('Models registered:', Object.keys(models));
     
     app.listen(PORT, '0.0.0.0', () => {
-      console.log(`Server is running on http://0.0.0.0:${PORT}`);
-      console.log('Environment variables loaded:');
-      console.log('- NODE_ENV:', process.env.NODE_ENV);
-      console.log('- PG_HOST:', process.env.PG_HOST);
-      console.log('- PG_DATABASE:', process.env.PG_DATABASE);
-      console.log('- PG_USER:', process.env.PG_USER ? '***' : 'NOT SET');
+        console.log(`🚀 Servidor ejecutándose en puerto ${PORT}`);
+        console.log(`🌍 Entorno: ${process.env.NODE_ENV || 'development'}`);
     });
   })
   .catch(err => {
