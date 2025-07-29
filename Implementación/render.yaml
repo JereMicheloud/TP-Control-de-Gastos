@@ -1,12 +1,13 @@
 services:
+  # Backend Service
   - type: web
     name: gestor-gastos-backend
+    runtime: node
     env: node
-    region: oregon
-    plan: free
     buildCommand: npm install --prefix gestor_gastos_backend
     startCommand: npm start --prefix gestor_gastos_backend
-    rootDir: ./
+    plan: free
+    healthCheckPath: /
     envVars:
       - key: NODE_ENV
         value: production
@@ -15,23 +16,41 @@ services:
       - key: PG_PORT
         value: 5432
       - key: PG_USER
-        value: postgres.hgipbefbrxfzlezmewtg
+        value: postgres.qazglqqykuplurfehcbz
       - key: PG_PASSWORD
         value: Jere060904_12
       - key: PG_DATABASE
         value: postgres
       - key: JWT_SECRET
-        value: algosecreto
+        value: algosecreto_produccion_muy_seguro_2024
+      - key: DB_URL
+        value: postgresql://postgres.qazglqqykuplurfehcbz:Jere060904_12@aws-0-sa-east-1.pooler.supabase.com:5432/postgres
       - key: PORT
-        value: 3000
+        value: 10000
 
-  - type: static
+  # Frontend Service
+  - type: web
     name: gestor-gastos-frontend
-    buildCommand: npm install --prefix gestor_gastos_frontend && npm run build --prefix gestor_gastos_frontend
+    runtime: static
+    buildCommand: |
+      npm install --prefix gestor_gastos_frontend &&
+      npm run build --prefix gestor_gastos_frontend
     staticPublishPath: gestor_gastos_frontend/dist
-    region: oregon
-    plan: free
-    rootDir: ./
+    buildFilter:
+      paths:
+        - gestor_gastos_frontend/**
     envVars:
       - key: VITE_API_URL
-        value: https://gestor-gastos-backend.onrender.com
+        fromService:
+          type: web
+          name: gestor-gastos-backend
+          property: host
+        sync: false
+    headers:
+      - path: /*
+        name: X-Robots-Tag
+        value: noindex
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

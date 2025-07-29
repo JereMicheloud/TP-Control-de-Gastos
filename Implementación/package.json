@@ -10,8 +10,9 @@
     "dev:back": "npm run dev --prefix gestor_gastos_backend",
     "dev:front": "npm run dev --prefix gestor_gastos_frontend",
     "start": "npm start --prefix gestor_gastos_backend",
-    "build": "npm install --prefix gestor_gastos_backend && npm install --prefix gestor_gastos_frontend",
-    "heroku-postbuild": "npm install --prefix gestor_gastos_backend && npm install --prefix gestor_gastos_frontend && npm run build --prefix gestor_gastos_frontend"
+    "build": "npm install --prefix gestor_gastos_backend && npm install --prefix gestor_gastos_frontend && npm run build --prefix gestor_gastos_frontend",
+    "heroku-postbuild": "npm run build",
+    "render-postbuild": "npm run build"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
