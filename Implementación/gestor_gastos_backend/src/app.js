@@ -15,7 +15,7 @@ app.use(cors({
     origin: [
         'http://localhost:5173',
         'http://localhost:5174', 
-        'https://gestor-gastos-frontend-ten.vercel.app/', // Tu URL de Vercel
+        'https://gestor-gastos-frontend-ten.vercel.app', // Quita la barra final "/"
         /\.vercel\.app$/,
         /\.onrender\.com$/
     ],
@@ -27,6 +27,23 @@ app.use(bodyParser.json());
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.path}`, req.body);
   next();
+});
+
+// Health check route
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'Backend funcionando correctamente',
+    timestamp: new Date().toISOString(),
+    env: process.env.NODE_ENV || 'development'
+  });
+});
+
+// Test route for CORS
+app.get('/api/test', (req, res) => {
+  res.json({ 
+    message: 'CORS funcionando correctamente',
+    origin: req.headers.origin 
+  });
 });
 
 // Routes
