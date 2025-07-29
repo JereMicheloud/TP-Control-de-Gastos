@@ -11,7 +11,16 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: [
+        'http://localhost:5173',
+        'http://localhost:5174', 
+        'https://gestor-gastos-frontend-ten.vercel.app/', // Tu URL de Vercel
+        /\.vercel\.app$/,
+        /\.onrender\.com$/
+    ],
+    credentials: true
+}));
 app.use(bodyParser.json());
 
 // Add logging middleware
