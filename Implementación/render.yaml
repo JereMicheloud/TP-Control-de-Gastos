@@ -16,15 +16,15 @@ services:
       - key: PG_PORT
         value: 5432
       - key: PG_USER
-        value: postgres.qazglqqykuplurfehcbz
+        value: postgres.hgipbefbrxfzlezmewtg
       - key: PG_PASSWORD
         value: Jere060904_12
       - key: PG_DATABASE
         value: postgres
       - key: JWT_SECRET
-        value: algosecreto_produccion_muy_seguro_2024
+        value: algosecreto
       - key: DB_URL
-        value: postgresql://postgres.qazglqqykuplurfehcbz:Jere060904_12@aws-0-sa-east-1.pooler.supabase.com:5432/postgres
+        value: postgresql://postgres.hgipbefbrxfzlezmewtg:Jere060904_12@aws-0-sa-east-1.pooler.supabase.com:5432/postgres
       - key: PORT
         value: 10000
 

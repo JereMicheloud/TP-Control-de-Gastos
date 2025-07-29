@@ -15,8 +15,7 @@ app.use(cors({
     origin: [
         'http://localhost:5173',
         'http://localhost:5174', 
-        'https://gestor-gastos-frontend-ten.vercel.app',
-        /\.vercel\.app$/,
+        'https://gestor-gastos-frontend.onrender.com',
         /\.onrender\.com$/
     ],
     credentials: true
